@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tủ Sách Số - Lớp 10A1 | THPT Trần Phú</title>
+    <!-- FontAwesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00a8cc;
+            --accent: #ff9f43;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        header .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: var(--accent);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Intro Section */
+        .intro-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .intro-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .intro-stats {
+            background: #e0f2fe;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .intro-stats .qr-placeholder {
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        /* Section Layout Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #004085;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Lang switch tabs for Heritage Section */
+        .lang-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .lang-btn {
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* E-Book Viewer Frame */
+        .ebook-container {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 50px;
+        }
+
+        .ebook-reader {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* List & Meta Info */
+        .meta-box {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .meta-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .meta-list {
+            list-style-type: none;
+        }
+
+        .meta-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 10px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <span class="badge"><i class="fa-solid fa-graduation-cap"></i> TRƯỜNG THPT TRẦN PHÚ - PHƯỜNG MÓNG CÁI 2</span>
+        <h1>TỦ SÁCH SỐ CHI ĐOÀN 10A1</h1>
+        <p>“Tự hào di sản Quảng Ninh – Tự tin hội nhập toàn cầu”</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#gioi-thieu" class="active">Giới thiệu</a></li>
+            <li><a href="#di-san">1. Sáng tạo số & Di sản</a></li>
+            <li><a href="#hoc-lieu">2. Học liệu "Quảng Ninh trong mắt em"</a></li>
+            <li><a href="#ebook">3. E-book Sáng tác</a></li>
+            <li><a href="#ho-so">Hồ sơ dự thi</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Section: Giới thiệu chung -->
+        <section id="gioi-thieu">
+            <div class="intro-card">
+                <div class="intro-info">
+                    <h3><i class="fa-solid fa-circle-info"></i> Lời Giới Thiệu Ý Tưởng</h3>
+                    <p>Chào mừng thầy cô và các bạn đến với <strong>Tủ sách số Chi đoàn 10A1</strong>! Sản phẩm được xây dựng hưởng ứng cuộc thi do Đoàn Trường THPT Trần Phú phát động năm 2026. Tủ sách số nhằm mục đích số hóa các giá trị lịch sử, văn hóa, danh lam thắng cảnh đặc sắc của Quảng Ninh và phường Móng Cái 2, đồng thời ứng dụng trí tuệ nhân tạo (AI) và công nghệ truyền thông hiện đại để quảng bá di sản đến bạn bè quốc tế.</p>
+                </div>
+                <div class="intro-stats">
+                    <i class="fa-solid fa-qrcode fa-2x" style="color: var(--primary);"></i>
+                    <strong style="margin-top:5px;">Quét Mã QR Tra Cứu</strong>
+                    <div class="qr-placeholder">
+                        <i class="fa-solid fa-qrcode fa-4x" style="color: #cbd5e1;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nội dung 1: Sáng tạo số cùng Di sản -->
+        <section id="di-san">
+            <div class="section-title">
+                <h2>1. Sáng Tạo Số Cùng Di Sản</h2>
+            </div>
+            <p style="text-align: center; margin-bottom: 25px;">Sản phẩm truyền thông đa ngữ (Việt - Anh - Trung) giới thiệu các di sản tiêu biểu tại phường Móng Cái 2 & tỉnh Quảng Ninh.</p>
+
+            <div class="grid-3">
+                <!-- Card Di sản 1 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://via.placeholder.com/400x250?text=Lien+Hoa+Tu');">
+                        <span class="card-badge">Video 1-3 Phút</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Di sản Lịch sử - Chùa Liên Hoa (Móng Cái 2)</h3>
+                        <div class="lang-tabs">
+                            <button class="lang-btn active" onclick="switchLang(this, 'vi1')">VIE</button>
+                            <button class="lang-btn" onclick="switchLang(this, 'en1')">ENG</button>
+                            <button class="lang-btn" onclick="switchLang(this, 'zh1')">ZHO</button>
+                        </div>
+                        <p id="desc-1">Tìm hiểu giá trị kiến trúc, văn hóa tâm linh của Chùa Liên Hoa - địa danh lịch sử trên địa bàn phường Móng Cái 2.</p>
+                        <a href="#" class="btn"><i class="fa-solid fa-play"></i> Xem Video Song Ngữ</a>
+                    </div>
+                </div>
+
+                <!-- Card Di sản 2 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://via.placeholder.com/400x250?text=Mong+Cai+Heritage');">
+                        <span class="card-badge">Infographic / Postcard</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Bộ Postcard Số: Nét Đẹp Móng Cái 2</h3>
+                        <div class="lang-tabs">
+                            <button class="lang-btn active" onclick="switchLang(this, 'vi2')">VIE</button>
+                            <button class="lang-btn" onclick="switchLang(this, 'en2')">ENG</button>
+                        </div>
+                        <p id="desc-2">Bộ áp phích điện tử thiết kế bằng Canva & AI số hóa nét đẹp văn hóa người dân vùng ven biển.</p>
+                        <a href="#" class="btn btn-outline"><i class="fa-solid fa-image"></i> Xem Bộ Postcard</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nội dung 2: Bộ học liệu số "Quảng Ninh trong mắt em" -->
+        <section id="hoc-lieu">
+            <div class="section-title">
+                <h2>2. Bộ Học Liệu Số “Quảng Ninh Trong Mắt Em”</h2>
+            </div>
+            <div class="grid-3">
+                <!-- Video Short -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://via.placeholder.com/400x250?text=Reels+TikTok');">
+                        <span class="card-badge">Reels / TikTok</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Chuỗi Video Ngắn: Explore Quang Ninh</h3>
+                        <p>Các video ngắn (15s-60s) thuyết minh Tiếng Anh & Phụ đề Tiếng Trung giới thiệu ẩm thực và địa điểm check-in hấp dẫn.</p>
+                        <a href="#" class="btn"><i class="fa-brands fa-tiktok"></i> Trải nghiệm Video Short</a>
+                    </div>
+                </div>
+
+                <!-- Podcast -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://via.placeholder.com/400x250?text=Podcast+Audio');">
+                        <span class="card-badge">Podcast / Audio</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Podcast Episode 1: "Lắng Nghe Nhịp Sống Vùng Biên"</h3>
+                        <p>Tập Podcast thu âm đọc cảm nhận văn hóa, sử dụng giọng đọc AI hỗ trợ kết hợp phát âm Tiếng Anh tiêu chuẩn.</p>
+                        <a href="#" class="btn"><i class="fa-solid fa-podcast"></i> Nghe Podcast</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nội dung 3: E-Book Sáng tác -->
+        <section id="ebook">
+            <div class="section-title">
+                <h2>3. E-Book Sáng Tác “Em Vẽ Thành Phố Quảng Ninh”</h2>
+            </div>
+            <div class="ebook-container">
+                <div class="ebook-reader">
+                    <i class="fa-solid fa-book-open fa-4x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                    <h3>Ấn Phẩm Điện Tử: "Em Vẽ Thành Phố Quảng Ninh" - Lớp 10A1</h3>
+                    <p style="max-width: 600px; margin: 10px 0 20px;">Tập hợp các bài viết cảm nhận, tranh vẽ kỹ thuật số số hóa và tóm tắt review sách của các bạn học sinh Chi đoàn 10A1.</p>
+                    <a href="#" class="btn"><i class="fa-solid fa-expand"></i> Mở Đọc E-Book Toàn Màn Hình</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hồ sơ dự thi & Danh mục công cụ -->
+        <section id="ho-so">
+            <div class="section-title">
+                <h2>Hồ Sơ Dự Thi & Minh Bạch Công Cụ AI</h2>
+            </div>
+            <div class="meta-box">
+                <h3><i class="fa-solid fa-users"></i> 1. Danh sách Học sinh Tham gia Thực hiện (Chi đoàn 10A1)</h3>
+                <ul class="meta-list">
+                    <li><span>Nguyễn Văn A (Lớp trưởng)</span> <b>Phụ trách chung & Lập trình Website</b></li>
+                    <li><span>Trần Thị B</span> <b>Biên tập nội dung & Song ngữ Anh - Trung</b></li>
+                    <li><span>Lê Văn C</span> <b>Thiết kế Infographic & E-book</b></li>
+                    <li><span>Nhóm học sinh Tổ 1, 2, 3, 4</span> <b>Sáng tác bài viết & Vẽ tranh số hóa</b></li>
+                </ul>
+            </div>
+
+            <div class="meta-box">
+                <h3><i class="fa-solid fa-robot"></i> 2. Danh mục Tư liệu & Công cụ AI Sử dụng</h3>
+                <ul class="meta-list">
+                    <li><span>Nguồn thông tin & Tư liệu:</span> <b>Cổng thông tin điện tử Phường Móng Cái 2, Báo Quảng Ninh</b></li>
+                    <li><span>Công cụ Dịch thuật & Song ngữ:</span> <b>ChatGPT / Google Translate (Có học sinh kiểm chứng nội dung)</b></li>
+                    <li><span>Công cụ Đồ họa & Thiết kế:</span> <b>Canva, CapCut, Photoshop</b></li>
+                    <li><span>Công cụ Tạo Website:</span> <b>HTML5, CSS3, JavaScript (Host trên GitHub Pages)</b></li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Tủ Sách Số Chi Đoàn 10A1 - Trường THPT Trần Phú, Phường Móng Cái 2</p>
+        <p>Sản phẩm tham dự cuộc thi “Tủ sách số – Tự hào di sản Quảng Ninh, tự tin hội nhập toàn cầu”</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hàm chuyển đổi ngôn ngữ cho phần Sáng tạo số cùng Di sản
+        function switchLang(element, langKey) {
+            // Unactive các nút cùng nhóm
+            const parent = element.parentElement;
+            const buttons = parent.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+
+            // Cập nhật text demo
+            if (langKey === 'vi1') {
+                document.getElementById('desc-1').innerText = 'Tìm hiểu giá trị kiến trúc, văn hóa tâm linh của Chùa Liên Hoa - địa danh lịch sử trên địa bàn phường Móng Cái 2.';
+            } else if (langKey === 'en1') {
+                document.getElementById('desc-1').innerText = 'Explore the architectural and spiritual cultural value of Lien Hoa Pagoda - a historical landmark in Mong Cai 2 ward.';
+            } else if (langKey === 'zh1') {
+                document.getElementById('desc-1').innerText = '探索莲花寺的建筑和精神文化价值——芒街二坊的历史 địa danh。';
+            } else if (langKey === 'vi2') {
+                document.getElementById('desc-2').innerText = 'Bộ áp phích điện tử thiết kế bằng Canva & AI số hóa nét đẹp văn hóa người dân vùng ven biển.';
+            } else if (langKey === 'en2') {
+                document.getElementById('desc-2').innerText = 'Digital postcard set designed using Canva & AI, digitizing the cultural beauty of coastal residents.';
+            }
+        }
+
+        // Smooth scroll cho Navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Active menu tab
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
