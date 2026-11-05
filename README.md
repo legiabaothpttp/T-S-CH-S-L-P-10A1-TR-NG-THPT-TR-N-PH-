@@ -411,7 +411,7 @@
                             <button class="lang-btn" onclick="switchLang(this, 'zh1')">ZHO</button>
                         </div>
                         <p id="desc-1">Tìm hiểu giá trị kiến trúc, văn hóa tâm linh của Chùa Liên Hoa - địa danh lịch sử trên địa bàn phường Móng Cái 2.</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-play"></i> Xem Video Song Ngữ</a>
+                       <a href="https://www.youtube.com/watch?v=MA_DI_CHI_VIDEO_CUA_BAN" target="_blank" class="btn"><i class="fa-solid fa-play"></i> Xem Video Song Ngữ</a>
                     </div>
                 </div>
 
